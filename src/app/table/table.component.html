@@ -39,7 +39,6 @@
 <!--<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>-->
 
 <hr>
-<button class="btn btn-success">btn</button>
 
 <table class="table">
     <thead>
@@ -52,7 +51,7 @@
     <tbody>
     <tr *ngFor="let task of arrayOfTasks; let i = index">
 
-        <app-table-row [task]="task">
+        <app-table-row [task]="task" [index]="i">
 
         </app-table-row>
         <!--<th scope="row">{{task.taskName}}</th>-->

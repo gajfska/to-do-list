@@ -41,6 +41,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
     checked = false;
     isDisplay = false;
     arrayOfTasks: TaskModel[] = [];
+    indexTask: number;
     private subscription: Subscription;
 
 
@@ -55,6 +56,12 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
             .subscribe(
                 (tasks: TaskModel[]) => {
                     this.arrayOfTasks = tasks;
+                }
+            );
+        this.subscription = this.taskService.taskDelete
+            .subscribe(
+                (index: number) => {
+                    this.indexTask = index;
                 }
             );
     }

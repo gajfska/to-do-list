@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {TaskModel} from './task.model';
+import {TaskService} from './task.service';
 
 @Component({
     selector: 'app-table-row',
@@ -9,6 +10,9 @@ import {TaskModel} from './task.model';
 export class TableRowComponent {
 
     @Input() task: TaskModel;
+    @Input() index: number;
+
+    constructor(private taskService: TaskService) {}
 
 
     tasks = [
@@ -23,5 +27,10 @@ export class TableRowComponent {
         { taskName: 'Play board games', priority: 'Medium', done: 'x', delete: ''},
         { taskName: 'Take a nap', priority: 'Medium', done: 'x', delete: ''},
     ];
+
+
+    onDelete(index: number) {
+        this.taskService.deleteTask(index);
+    }
 
 }

@@ -6,6 +6,8 @@ import {Subject} from 'rxjs';
 export class TaskService {
 
     tasksChanged = new Subject<TaskModel[]>();
+    taskDelete = new Subject<number>();
+
 
     arrayOfTasks: TaskModel[] = [
         new TaskModel('Feed turtle', 'Low', 'x', ''),
@@ -20,6 +22,11 @@ export class TaskService {
 
     addTask(task: TaskModel) {
         this.arrayOfTasks.push(task);
+        this.tasksChanged.next(this.arrayOfTasks.slice());
+    }
+
+    deleteTask(index: number) {
+        this.arrayOfTasks.splice(index, 1);
         this.tasksChanged.next(this.arrayOfTasks.slice());
     }
 
