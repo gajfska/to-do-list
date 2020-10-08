@@ -8,19 +8,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormComponent} from './form/form.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-      TableComponent
+      TableComponent,
+      FormComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
       MatTableModule,
       MatCheckboxModule,
-      MatPaginatorModule
+      MatPaginatorModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
