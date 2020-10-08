@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MatTableDataSource} from '@angular/material/table';
 
 export interface TaskElement {
     taskName: string;
@@ -33,6 +34,8 @@ export class AppComponent {
 
 
   displayedColumns: string[] = ['taskName', 'priority', 'done'];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource<TaskElement>(ELEMENT_DATA);
+  checked = false;
+
 
 }
