@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     BrowserModule,
     BrowserAnimationsModule,
       MatTableModule,
-      MatCheckboxModule
+      MatCheckboxModule,
+      MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

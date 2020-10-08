@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+
 
 export interface TaskElement {
     taskName: string;
@@ -29,13 +31,20 @@ const ELEMENT_DATA: TaskElement[] = [
 })
 
 
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'to-do-list';
 
 
   displayedColumns: string[] = ['taskName', 'priority', 'done'];
   dataSource = new MatTableDataSource<TaskElement>(ELEMENT_DATA);
   checked = false;
+
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+
+    ngAfterViewInit(): void {
+        this.dataSource.paginator = this.paginator;
+    }
 
 
 }
