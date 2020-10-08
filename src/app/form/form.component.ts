@@ -1,4 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {TaskModel} from '../table/table-row/task.model';
+import {TaskService} from '../table/table-row/task.service';
 
 @Component({
     selector: 'app-form',
@@ -7,4 +10,18 @@ import {Component} from '@angular/core';
 })
 
 export class FormComponent {
+    @ViewChild('f', { static: false }) slForm: NgForm;
+
+    defoultPriority = 'high';
+
+    constructor(private taskService: TaskService) {}
+
+    onSubmit(form: NgForm) {
+        const value = form.value;
+        const newTask = new TaskModel(value.name, value.priority, '', '');
+        this.taskService.addTask(newTask);
+        form.reset();
+        console.log('lo: ' + value.name + ' ' + value.priority);
+    }
+
 }

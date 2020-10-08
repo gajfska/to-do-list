@@ -1,0 +1,27 @@
+import {Component, Input} from '@angular/core';
+import {TaskModel} from './task.model';
+
+@Component({
+    selector: 'app-table-row',
+    templateUrl: './table-row.component.html'
+})
+
+export class TableRowComponent {
+
+    @Input() task: TaskModel;
+
+
+    tasks = [
+        { taskName: 'Feed turtle', priority: 'Low', done: 'x', delete: ''},
+        { taskName: 'Vacuum', priority: 'Medium', done: 'x', delete: ''},
+        { taskName: 'Wash the dishes', priority: 'Low', done: 'x', delete: ''},
+        { taskName: 'Make dinner', priority: 'Low', done: 'x', delete: ''},
+        { taskName: 'Exercise', priority: 'Medium', done: 'x', delete: ''},
+        { taskName: 'Do the laundry', priority: 'Low', done: 'x', delete: ''},
+        { taskName: 'Water the flowers', priority: 'High', done: 'x', delete: ''},
+        { taskName: 'Do shopping', priority: 'High', done: 'x', delete: ''},
+        { taskName: 'Play board games', priority: 'Medium', done: 'x', delete: ''},
+        { taskName: 'Take a nap', priority: 'Medium', done: 'x', delete: ''},
+    ];
+
+}
