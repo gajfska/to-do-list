@@ -1,10 +1,10 @@
 <table class="table">
-    <tbody>
+    <tbody (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
         <th scope="row">{{task.taskName}}</th>
         <td>{{task.priority}}</td>
         <td>
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
         </td>
-        <button class="btn btn-default" (click)="onDelete(index)">Delete</button>
+        <button class="btn btn-default" (click)="onDelete(index)"  *ngIf="isDisplay">Delete</button>
     </tbody>
 </table>

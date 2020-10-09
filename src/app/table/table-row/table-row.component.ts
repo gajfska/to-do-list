@@ -12,6 +12,9 @@ export class TableRowComponent {
     @Input() task: TaskModel;
     @Input() index: number;
 
+    isDisplay = false;
+
+
     constructor(private taskService: TaskService) {}
 
 
@@ -31,6 +34,17 @@ export class TableRowComponent {
 
     onDelete(index: number) {
         this.taskService.deleteTask(index);
+    }
+
+    mouseEnter(){
+        this.isDisplay = true;
+        console.log('enter');
+    }
+
+    mouseLeave(){
+        this.isDisplay = false;
+        console.log('leave');
+
     }
 
 }

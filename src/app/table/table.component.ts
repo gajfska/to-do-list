@@ -39,7 +39,6 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
     displayedColumns: string[] = ['taskName', 'priority', 'done', 'delete'];
     dataSource = new MatTableDataSource<TaskElement>(ELEMENT_DATA);
     checked = false;
-    isDisplay = false;
     arrayOfTasks: TaskModel[] = [];
     indexTask: number;
     private subscription: Subscription;
@@ -70,16 +69,24 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
         this.dataSource.paginator = this.paginator;
     }
 
-    mouseEnter(){
-        this.isDisplay = true;
-        console.log('enter');
-    }
+    // mouseEnter(index: number){
+    //     this.showButton(index)
+    //     console.log('enter');
+    // }
+    //
+    // mouseLeave(index: number){
+    //     this.isDisplay = false;
+    //     console.log('leave');
+    //
+    // }
 
-    mouseLeave(){
-        this.isDisplay = false;
-        console.log('leave');
+    // showButton(index: number) {
+    //     this.isDisplay = true;
+    // }
 
-    }
+    // onDelete(index: number){
+    //     this.taskService.deleteTask(index);
+    // }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
