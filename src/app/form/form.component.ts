@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {TaskModel} from '../table/table-row/task.model';
-import {TaskService} from '../table/table-row/task.service';
+import {TaskModel} from '../shared/task.model';
+import {TaskService} from '../shared/task.service';
 
 @Component({
     selector: 'app-form',

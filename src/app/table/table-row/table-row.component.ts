@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {TaskModel} from './task.model';
-import {TaskService} from './task.service';
+import {TaskModel} from '../../shared/task.model';
+import {TaskService} from '../../shared/task.service';
 
 @Component({
     selector: 'app-table-row',

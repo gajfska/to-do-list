@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
-import {TaskModel} from './table-row/task.model';
-import {TaskService} from './table-row/task.service';
+import {TaskModel} from '../shared/task.model';
+import {TaskService} from '../shared/task.service';
 import {Subscription} from 'rxjs';
 
 
@@ -49,6 +49,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
+
     ngOnInit() {
         this.arrayOfTasks = this.taskService.getTasks();
         this.subscription = this.taskService.tasksChanged
@@ -67,6 +68,10 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
 
     ngAfterViewInit(): void {
         this.dataSource.paginator = this.paginator;
+    }
+
+    onSort() {
+        this.taskService.sortingTask();
     }
 
     // mouseEnter(index: number){
