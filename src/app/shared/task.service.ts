@@ -10,7 +10,9 @@ export class TaskService {
     taskDelete = new Subject<number>();
 
 
-    arrayOfTasks: TaskModel[] = [
+    arrayOfTasks: TaskModel[] = [];
+
+    defaultArray: TaskModel[] =  [
         new TaskModel('Feed turtle', 'High', 'x', ''),
         new TaskModel('Vacuum', 'Medium', 'x', ''),
         new TaskModel('Wash the dishes', 'Medium', 'x', ''),
@@ -22,12 +24,17 @@ export class TaskService {
     ];
 
     getTasks() {
+        let retrievedObject = localStorage.getItem('testObject');
+        console.log('retrievedObject: ', JSON.parse(retrievedObject));
+        let locations: Array<TaskModel> = JSON.parse(retrievedObject);
+        this.arrayOfTasks = locations || this.defaultArray;
         return this.arrayOfTasks.slice();
     }
 
     addTask(task: TaskModel) {
         this.arrayOfTasks.push(task);
         this.tasksChanged.next(this.arrayOfTasks.slice());
+        localStorage.setItem('testObject', JSON.stringify(this.arrayOfTasks));
     }
 
     deleteTask(wantedId: string) {
@@ -36,6 +43,7 @@ export class TaskService {
             }).indexOf(wantedId);
         this.arrayOfTasks.splice(removeIndex, 1);
         this.tasksChanged.next(this.arrayOfTasks.slice());
+        localStorage.setItem('testObject', JSON.stringify(this.arrayOfTasks));
     }
 
     sortingTask() {
