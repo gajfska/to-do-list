@@ -1,4 +1,8 @@
+import { v4 as uuidv4 } from 'uuid';
+
+
 export class TaskModel {
+    id = uuidv4();
     taskName: string;
     priority: string;
     done: string;
@@ -10,4 +14,5 @@ export class TaskModel {
         this.done = done;
         this.delete = remove;
 }
+
 }

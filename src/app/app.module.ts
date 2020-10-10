@@ -16,6 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {TableRowComponent} from './table/table-row/table-row.component';
 import {FormsModule} from '@angular/forms';
+import {MatSortModule} from '@angular/material/sort';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {FormsModule} from '@angular/forms';
       MatSelectModule,
       MatButtonModule,
       MatIconModule,
-      FormsModule
+      FormsModule,
+      MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

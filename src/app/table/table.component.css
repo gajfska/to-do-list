@@ -13,3 +13,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-row td {
     border-bottom-width: 0;
 }
+
+.mat-sort-header-container {
+    align-items: center;
+}

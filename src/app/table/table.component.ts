@@ -3,29 +3,9 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {TaskModel} from '../shared/task.model';
 import {TaskService} from '../shared/task.service';
-import {Subscription} from 'rxjs';
-
-
-export interface TaskElement {
-    taskName: string;
-    priority: string;
-    done: string;
-    delete: string;
-}
-
-
-const ELEMENT_DATA: TaskElement[] = [
-    { taskName: 'Feed turtle', priority: 'Low', done: 'x', delete: ''},
-    { taskName: 'Vacuum', priority: 'Medium', done: 'x', delete: ''},
-    { taskName: 'Wash the dishes', priority: 'Low', done: 'x', delete: ''},
-    { taskName: 'Make dinner', priority: 'Low', done: 'x', delete: ''},
-    { taskName: 'Exercise', priority: 'Medium', done: 'x', delete: ''},
-    { taskName: 'Do the laundry', priority: 'Low', done: 'x', delete: ''},
-    { taskName: 'Water the flowers', priority: 'High', done: 'x', delete: ''},
-    { taskName: 'Do shopping', priority: 'High', done: 'x', delete: ''},
-    { taskName: 'Play board games', priority: 'Medium', done: 'x', delete: ''},
-    { taskName: 'Take a nap', priority: 'Medium', done: 'x', delete: ''},
-];
+import {Observable, Subscription} from 'rxjs';
+import {MatSort} from '@angular/material/sort';
+import {DataSource} from '@angular/cdk/table';
 
 @Component({
     selector: 'app-table',
@@ -37,17 +17,21 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
 
 
     displayedColumns: string[] = ['taskName', 'priority', 'done', 'delete'];
-    dataSource = new MatTableDataSource<TaskElement>(ELEMENT_DATA);
+
     checked = false;
     arrayOfTasks: TaskModel[] = [];
     indexTask: number;
     private subscription: Subscription;
+    dataSource: any;
+    isDisplay?: string;
 
 
     constructor(private taskService: TaskService) {}
 
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
+
 
 
     ngOnInit() {
@@ -55,7 +39,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
         this.subscription = this.taskService.tasksChanged
             .subscribe(
                 (tasks: TaskModel[]) => {
-                    this.arrayOfTasks = tasks;
+                    this.dataSource.data = tasks;
                 }
             );
         this.subscription = this.taskService.taskDelete
@@ -64,15 +48,33 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
                     this.indexTask = index;
                 }
             );
+        this.dataSource = new MatTableDataSource(this.arrayOfTasks);
     }
 
     ngAfterViewInit(): void {
+        this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
     }
 
-    onSort() {
-        this.taskService.sortingTask();
+    mouseEnter(row){
+        this.isDisplay = row.taskName;
     }
+
+    mouseLeave(row){
+        this.isDisplay = null;
+    }
+
+        isHoverOn(row): boolean {
+        return row.taskName === this.isDisplay;
+    }
+
+    onDelete(id: string){
+        this.taskService.deleteTask(id);
+    }
+
+    // onSort() {
+    //     this.taskService.sortingTask();
+    // }
 
     // mouseEnter(index: number){
     //     this.showButton(index)
@@ -99,4 +101,14 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
 
 
 
+}
+
+export class UserDataSource extends DataSource<any> {
+    constructor(private userService: TaskService) {
+        super();
+    }
+    connect(): Observable<TaskModel[]> {
+        return this.userService.tasksChanged;
+    }
+    disconnect() {}
 }

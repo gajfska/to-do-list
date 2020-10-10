@@ -1,13 +1,13 @@
 import {TaskModel} from './task.model';
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({providedIn: 'root'})
 export class TaskService {
 
     tasksChanged = new Subject<TaskModel[]>();
     taskDelete = new Subject<number>();
-
 
 
     arrayOfTasks: TaskModel[] = [
@@ -30,22 +30,25 @@ export class TaskService {
         this.tasksChanged.next(this.arrayOfTasks.slice());
     }
 
-    deleteTask(index: number) {
-        this.arrayOfTasks.splice(index, 1);
+    deleteTask(wantedId: string) {
+        const removeIndex = this.arrayOfTasks.map((item) => {
+                return item.id;
+            }).indexOf(wantedId);
+        this.arrayOfTasks.splice(removeIndex, 1);
         this.tasksChanged.next(this.arrayOfTasks.slice());
     }
 
     sortingTask() {
-        let currentArray = this.arrayOfTasks.slice();
-        let sortedArray =  currentArray.sort((a, b) => {
-            if (a['taskName'] > b['taskName']){
-                return 1;
-            }
-            else {
-                return -1;
-            }
-        });
-        this.tasksChanged.next(sortedArray);
+        // let currentArray = this.arrayOfTasks.slice();
+        // let sortedArray =  currentArray.sort((a, b) => {
+        //     if (a['taskName'] > b['taskName']){
+        //         return 1;
+        //     }
+        //     else {
+        //         return -1;
+        //     }
+        // });
+        // this.tasksChanged.next(sortedArray);
 
     }
 
