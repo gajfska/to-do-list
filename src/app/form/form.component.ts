@@ -20,10 +20,15 @@ export class FormComponent {
 
     onSubmit(form: NgForm) {
         const value = form.value;
-        const newTask = new TaskModel(value.name, value.priority, '', '');
+        const nameTask = this.capitalizeFirstLetter(value.name.trim());
+        const newTask = new TaskModel(nameTask, value.priority, '', '');
         this.taskService.addTask(newTask);
         form.reset();
         console.log('lo: ' + value.name + ' ' + value.priority);
+    }
+
+    capitalizeFirstLetter(name: string) {
+        return name.charAt(0).toUpperCase() + name.slice(1);
     }
 
 }
