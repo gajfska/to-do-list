@@ -2,7 +2,6 @@ import {Component, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {TaskModel} from '../shared/task.model';
 import {TaskService} from '../shared/task.service';
-import { v4 as uuidv4 } from 'uuid';
 
 
 @Component({
@@ -14,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class FormComponent {
     @ViewChild('f', { static: false }) slForm: NgForm;
 
-    defoultPriority = 'high';
+    selected = 'High';
 
     constructor(private taskService: TaskService) {}
 
@@ -24,7 +23,6 @@ export class FormComponent {
         const newTask = new TaskModel(nameTask, value.priority, '', '');
         this.taskService.addTask(newTask);
         form.reset();
-        console.log('lo: ' + value.name + ' ' + value.priority);
     }
 
     capitalizeFirstLetter(name: string) {
