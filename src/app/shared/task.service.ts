@@ -13,14 +13,14 @@ export class TaskService {
     arrayOfTasks: TaskModel[] = [];
 
     defaultArray: TaskModel[] =  [
-        new TaskModel('Feed turtle', 'High', 'x', ''),
-        new TaskModel('Vacuum', 'Medium', 'x', ''),
-        new TaskModel('Wash the dishes', 'Medium', 'x', ''),
-        new TaskModel('Exercise', 'Low', 'x', ''),
-        new TaskModel('Make dinner', 'High', 'x', ''),
-        new TaskModel('Do the laundry', 'Low', 'x', ''),
-        new TaskModel('Water the flowers', 'Low', 'x', ''),
-        new TaskModel('Do shopping', 'High', 'x', '')
+        new TaskModel('Feed turtle', 'High', false, ''),
+        new TaskModel('Vacuum', 'Medium', false, ''),
+        new TaskModel('Wash the dishes', 'Medium', false, ''),
+        new TaskModel('Exercise', 'Low', false, ''),
+        new TaskModel('Make dinner', 'High', false, ''),
+        new TaskModel('Do the laundry', 'Low', false, ''),
+        new TaskModel('Water the flowers', 'Low', false, ''),
+        new TaskModel('Do shopping', 'High', false, '')
     ];
 
     getTasks() {

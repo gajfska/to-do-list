@@ -21,7 +21,7 @@ export class FormComponent {
     onSubmit(form: NgForm) {
         const value = form.value;
         const nameTask = this.capitalizeFirstLetter(value.name.trim());
-        const newTask = new TaskModel(nameTask, value.priority, '', '');
+        const newTask = new TaskModel(nameTask, value.priority, false, '');
         this.taskService.addTask(newTask);
         form.resetForm();
     }
