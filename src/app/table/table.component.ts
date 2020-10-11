@@ -57,7 +57,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
     }
 
     mouseEnter(row){
-        this.isDisplay = row.taskName;
+        this.isDisplay = row.id;
     }
 
     mouseLeave(row){
@@ -65,7 +65,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
     }
 
         isHoverOn(row): boolean {
-        return row.taskName === this.isDisplay;
+        return row.id === this.isDisplay;
     }
 
     onDelete(id: string){

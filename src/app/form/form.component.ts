@@ -13,6 +13,7 @@ import {TaskService} from '../shared/task.service';
 export class FormComponent {
     @ViewChild('f', { static: false }) slForm: NgForm;
 
+
     selected = 'High';
 
     constructor(private taskService: TaskService) {}
@@ -22,11 +23,10 @@ export class FormComponent {
         const nameTask = this.capitalizeFirstLetter(value.name.trim());
         const newTask = new TaskModel(nameTask, value.priority, '', '');
         this.taskService.addTask(newTask);
-        form.reset();
+        form.resetForm();
     }
 
     capitalizeFirstLetter(name: string) {
         return name.charAt(0).toUpperCase() + name.slice(1);
     }
-
 }
