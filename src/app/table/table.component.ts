@@ -30,7 +30,7 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
 
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatSort) sort: MatSort
 
 
 

@@ -1,37 +1,36 @@
 <form class="example-form" (ngSubmit)="onSubmit(f)" #f="ngForm">
-
-    <table class="example-full-width" cellspacing="0"><tr>
-        <td>
-            <mat-form-field appearance="fill" class="example-full-width">
-                <mat-label>Task name</mat-label>
-                <input
-                        id="name"
-                        name="name"
-                        required
-                        ngModel
-                        matInput>
-            </mat-form-field>
-        </td>
-        <td>
-            <mat-form-field appearance="fill" class="example-full-width">
-                <mat-label>Priority</mat-label>
-                <mat-select name="priority" id="priority" [ngModel]="selected" [(value)]="selected" required>
-                    <mat-option value="High">High</mat-option>
-                    <mat-option value="Medium">Medium</mat-option>
-                    <mat-option value="Low">Low</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </td>
-    </tr></table>
-
-    <div class="row">
-        <div class="col-xs-12">
-            <button mat-raised-button
-                    color="primary"
-                    type="submit"
-                    [disabled]="!f.valid">Add</button>
-        </div>
-    </div>
+    <table class="example-full-width" cellspacing="0">
+        <tr>
+            <td>
+                <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>Task name</mat-label>
+                    <input
+                            id="name"
+                            name="name"
+                            required
+                            ngModel
+                            matInput>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>Priority</mat-label>
+                    <mat-select name="priority" id="priority" [ngModel]="selected" [(value)]="selected" required>
+                        <mat-option value="High">High</mat-option>
+                        <mat-option value="Medium">Medium</mat-option>
+                        <mat-option value="Low">Low</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <button mat-raised-button
+                        color="primary"
+                        type="submit"
+                        [disabled]="!f.valid">Add
+                </button>
+            </td>
+        </tr>
+    </table>
 </form>
 
 
@@ -39,31 +38,31 @@
 
 
 <!--<form >-->
-    <!--<div class="row">-->
-        <!--<div class="col-sm-5 form-group">-->
-            <!--<label for="name">Task name</label>-->
-            <!--<input-->
-                    <!--type="text"-->
-                    <!--class="form-control"-->
-                    <!--ngModel-->
-                    <!--required-->
-            <!--&gt;-->
-        <!--</div>-->
-        <!--<div class="col-sm-2 form-group">-->
-            <!--<label for="">Priority</label>-->
-            <!--<select class="form-control" [ngModel]="defoultPriority">-->
-                <!--<option value="High">High</option>-->
-                <!--<option value="Medium">Medium</option>-->
-                <!--<option value="Low">Low</option>-->
-            <!--</select>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-        <!--<div class="col-xs-12">-->
-            <!--<button-->
-                    <!--class="btn btn-success"-->
-                    <!--type="submit"-->
-                    <!--[disabled]="!f.valid">Add</button>-->
-        <!--</div>-->
-    <!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-sm-5 form-group">-->
+<!--<label for="name">Task name</label>-->
+<!--<input-->
+<!--type="text"-->
+<!--class="form-control"-->
+<!--ngModel-->
+<!--required-->
+<!--&gt;-->
+<!--</div>-->
+<!--<div class="col-sm-2 form-group">-->
+<!--<label for="">Priority</label>-->
+<!--<select class="form-control" [ngModel]="defoultPriority">-->
+<!--<option value="High">High</option>-->
+<!--<option value="Medium">Medium</option>-->
+<!--<option value="Low">Low</option>-->
+<!--</select>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12">-->
+<!--<button-->
+<!--class="btn btn-success"-->
+<!--type="submit"-->
+<!--[disabled]="!f.valid">Add</button>-->
+<!--</div>-->
+<!--</div>-->
 <!--</form>-->
