@@ -22,7 +22,7 @@ export class FormComponent {
         const value = form.value;
         const nameTask = this.capitalizeFirstLetter(value.name.trim());
         const priority: number = Number(value.priority);
-        const newTask = new TaskModel(nameTask, priority, false, '');
+        const newTask = new TaskModel(nameTask, priority, false);
 
         this.taskService.addTask(newTask);
         form.resetForm();
