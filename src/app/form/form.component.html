@@ -1,9 +1,7 @@
 <h4>Add a new task</h4>
 <form class="example-form" (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <table class="example-full-width" cellspacing="0">
-        <tr>
-            <td>
-                <mat-form-field appearance="fill" class="example-full-width">
+    <table class="example-container" cellspacing="0">
+                <mat-form-field appearance="fill">
                     <mat-label>Task name</mat-label>
                     <input
                             id="name"
@@ -12,8 +10,6 @@
                             ngModel
                             matInput>
                 </mat-form-field>
-            </td>
-            <td>
                 <mat-form-field appearance="fill">
                     <mat-label>Priority</mat-label>
                     <mat-select name="priority" id="priority" [ngModel]="priority" required>
@@ -22,8 +18,6 @@
                         <mat-option value=1>{{priorityName(1)}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-            </td>
-        </tr>
     </table>
 
     <div>

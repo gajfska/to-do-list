@@ -14,7 +14,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {TableRowComponent} from './table/table-row/table-row.component';
 import {FormsModule} from '@angular/forms';
 import {MatSortModule} from '@angular/material/sort';
 
@@ -23,8 +22,7 @@ import {MatSortModule} from '@angular/material/sort';
   declarations: [
     AppComponent,
       TableComponent,
-      FormComponent,
-      TableRowComponent
+      FormComponent
   ],
   imports: [
     BrowserModule,
