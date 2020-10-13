@@ -6,13 +6,13 @@ import { v4 as uuidv4 } from 'uuid';
 @Injectable({providedIn: 'root'})
 export class TaskService {
 
-    tasksChanged = new Subject<TaskModel[]>();
-    taskDelete = new Subject<number>();
+    tasksChangedSubject = new Subject<TaskModel[]>();
 
+    private localStorageName = 'localStorageDB';
 
-    arrayOfTasks: TaskModel[] = [];
+    private tasksArray: TaskModel[] = [];
 
-    defaultArray: TaskModel[] =  [
+    private exampleArray: TaskModel[] =  [
         new TaskModel('Feed turtle', 3, false),
         new TaskModel('Vacuum', 3, false),
         new TaskModel('Wash the dishes', 2, false),
@@ -36,27 +36,44 @@ export class TaskService {
         }
     }
 
-    getTasks() {
-        let retrievedObject = localStorage.getItem('testObject');
-        console.log('retrievedObject: ', JSON.parse(retrievedObject));
-        let locations: Array<TaskModel> = JSON.parse(retrievedObject);
-        this.arrayOfTasks = locations || this.defaultArray;
-        return this.arrayOfTasks.slice();
+    initTasks(): void {
+        const retrievedObject = localStorage.getItem(this.localStorageName);
+        const locations: Array<TaskModel> = JSON.parse(retrievedObject);
+        this.tasksArray = locations || this.exampleArray;
+        if (this.tasksArray.length === 0) {
+            this.tasksArray = this.exampleArray;
+        }
+
+        this.updateTasksList();
     }
 
-    addTask(task: TaskModel) {
-        this.arrayOfTasks.push(task);
-        this.tasksChanged.next(this.arrayOfTasks.slice());
-        localStorage.setItem('testObject', JSON.stringify(this.arrayOfTasks));
+    updateTask(wantedId: string, done: boolean): void {
+        const updateIndex = this.tasksArray.map((item) => {
+            return item.id;
+        }).indexOf(wantedId);
+
+        this.tasksArray[updateIndex].done = done;
+        this.updateTasksList();
     }
 
-    deleteTask(wantedId: string) {
-        const removeIndex = this.arrayOfTasks.map((item) => {
-                return item.id;
-            }).indexOf(wantedId);
-        this.arrayOfTasks.splice(removeIndex, 1);
-        this.tasksChanged.next(this.arrayOfTasks.slice());
-        localStorage.setItem('testObject', JSON.stringify(this.arrayOfTasks));
+    addTask(task: TaskModel): void {
+        this.tasksArray.push(task);
+        this.updateTasksList();
+    }
+
+    deleteTask(wantedId: string): void {
+        const removeIndex = this.tasksArray.map((item) => {
+            return item.id;
+        }).indexOf(wantedId);
+
+        this.tasksArray.splice(removeIndex, 1);
+
+        this.updateTasksList();
+    }
+
+    private updateTasksList(): void {
+        this.tasksChangedSubject.next(this.tasksArray.slice());
+        localStorage.setItem(this.localStorageName, JSON.stringify(this.tasksArray));
     }
 
     sortingTask() {

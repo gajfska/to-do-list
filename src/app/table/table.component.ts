@@ -16,39 +16,27 @@ import {DataSource} from '@angular/cdk/table';
 export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
 
 
-    displayedColumns: string[] = ['taskName', 'priority', 'done', 'delete'];
-
-    checked = false;
-    arrayOfTasks: TaskModel[] = [];
-    indexTask: number;
-    private subscription: Subscription;
+    hoveredOnTaskUUID?: string;
     dataSource: any;
-    isDisplay?: string;
+    displayedColumnsKeys: string[] = ['taskName', 'priority', 'done', 'delete'];
 
+    private subscription: Subscription;
 
     constructor(private taskService: TaskService) {}
 
-
     @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort
+    @ViewChild(MatSort) sort: MatSort;
 
-
-
-    ngOnInit() {
-        this.arrayOfTasks = this.taskService.getTasks();
-        this.subscription = this.taskService.tasksChanged
+    ngOnInit(): void {
+        this.subscription = this.taskService.tasksChangedSubject
             .subscribe(
                 (tasks: TaskModel[]) => {
                     this.dataSource.data = tasks;
                 }
             );
-        this.subscription = this.taskService.taskDelete
-            .subscribe(
-                (index: number) => {
-                    this.indexTask = index;
-                }
-            );
-        this.dataSource = new MatTableDataSource(this.arrayOfTasks);
+
+        this.dataSource = new MatTableDataSource([]);
+        this.taskService.initTasks();
     }
 
     ngAfterViewInit(): void {
@@ -56,59 +44,39 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
         this.dataSource.paginator = this.paginator;
     }
 
-    mouseEnter(row){
-        this.isDisplay = row.id;
+    checkboxChange(task: TaskModel): void{
+        const isDone =  !task.done;
+        this.taskService.updateTask(task.id, isDone);
     }
 
-    mouseLeave(row){
-        this.isDisplay = null;
+    // MARK: Delete button
+
+    mouseEnter(row): void {
+        this.hoveredOnTaskUUID = row.id;
     }
 
-        isHoverOn(row): boolean {
-        return row.id === this.isDisplay;
+    mouseLeave(): void {
+        this.hoveredOnTaskUUID = null;
     }
 
-    onDelete(id: string){
+    isHoverOn(row): boolean {
+        return row.id === this.hoveredOnTaskUUID;
+    }
+
+    onDelete(id: string): void {
         this.taskService.deleteTask(id);
     }
 
-    // onSort() {
-    //     this.taskService.sortingTask();
-    // }
+    // MARK: Getter
 
-    // mouseEnter(index: number){
-    //     this.showButton(index)
-    //     console.log('enter');
-    // }
-    //
-    // mouseLeave(index: number){
-    //     this.isDisplay = false;
-    //     console.log('leave');
-    //
-    // }
+    priorityName(priority: number): string {
+        return this.taskService.priorityName(priority);
+    }
 
-    // showButton(index: number) {
-    //     this.isDisplay = true;
-    // }
-
-    // onDelete(index: number){
-    //     this.taskService.deleteTask(index);
-    // }
-
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
 
 
 
-}
-
-export class UserDataSource extends DataSource<any> {
-    constructor(private userService: TaskService) {
-        super();
-    }
-    connect(): Observable<TaskModel[]> {
-        return this.userService.tasksChanged;
-    }
-    disconnect() {}
 }
