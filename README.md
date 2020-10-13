@@ -1,27 +1,26 @@
-# ToDoList
+# To Do List - Version using `mat-table` for Angular Material
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4.
+This version of the application was implemented by using `mat-table` from Angular Material https://material.angular.io/components/table/overview .
 
-## Development server
+This implementation is "simpler" and "optimal" one, as it uses optimization provided by an external library and prepared functionalities like data source and pagination. Yet, as it depends on external dependency, it constrains the number of possible modifications that can be applied. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Tech/framework used
 
-## Code scaffolding
+- HTML
+- Angular 9.1.3 
+- CSS
+- Material Design
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
+To run the project you first need to set up NPM and Angular CLI tool.
 
-## Build
+NPM you can get from https://www.npmjs.com/get-npm
+Angular CLI can be installed by calling:
+`npm install -g @angular/cli`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+After downloading the repository you need to download all dependencies using NPM:
+```sh
+$ npm install
+```
+Next run `ng serve` to start the app locally. In the browsers of your selection navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. Please remember that if you are running another app on the same port already, you need to choose a different one when starting a local server by calling `ng serve --port 4401` for example.
+   
