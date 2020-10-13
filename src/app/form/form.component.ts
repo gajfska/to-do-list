@@ -14,19 +14,25 @@ export class FormComponent {
     @ViewChild('f', { static: false }) slForm: NgForm;
 
 
-    selected = 'High';
+    priority;
 
     constructor(private taskService: TaskService) {}
 
-    onSubmit(form: NgForm) {
+    onSubmit(form: NgForm): void {
         const value = form.value;
         const nameTask = this.capitalizeFirstLetter(value.name.trim());
-        const newTask = new TaskModel(nameTask, value.priority, false, '');
+        const priority: number = Number(value.priority);
+        const newTask = new TaskModel(nameTask, priority, false, '');
+
         this.taskService.addTask(newTask);
         form.resetForm();
     }
 
-    capitalizeFirstLetter(name: string) {
+    priorityName(priority: number): string {
+        return this.taskService.priorityName(priority);
+    }
+
+    capitalizeFirstLetter(name: string): string {
         return name.charAt(0).toUpperCase() + name.slice(1);
     }
 }

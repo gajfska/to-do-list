@@ -13,15 +13,28 @@ export class TaskService {
     arrayOfTasks: TaskModel[] = [];
 
     defaultArray: TaskModel[] =  [
-        new TaskModel('Feed turtle', 'High', false, ''),
-        new TaskModel('Vacuum', 'Medium', false, ''),
-        new TaskModel('Wash the dishes', 'Medium', false, ''),
-        new TaskModel('Exercise', 'Low', false, ''),
-        new TaskModel('Make dinner', 'High', false, ''),
-        new TaskModel('Do the laundry', 'Low', false, ''),
-        new TaskModel('Water the flowers', 'Low', false, ''),
-        new TaskModel('Do shopping', 'High', false, '')
+        new TaskModel('Feed turtle', 3, false, ''),
+        new TaskModel('Vacuum', 3, false, ''),
+        new TaskModel('Wash the dishes', 2, false, ''),
+        new TaskModel('Exercise', 3, false, ''),
+        new TaskModel('Make dinner', 3, false, ''),
+        new TaskModel('Do the laundry', 1, false, ''),
+        new TaskModel('Water the flowers', 2, false, ''),
+        new TaskModel('Do shopping', 1, false, '')
     ];
+
+    priorityName(priority: number): string {
+        switch (priority) {
+            case 1:
+                return 'Low';
+            case 2:
+                return 'Medium';
+            case 3:
+                return 'High';
+            default:
+                return 'Unknown';
+        }
+    }
 
     getTasks() {
         let retrievedObject = localStorage.getItem('testObject');

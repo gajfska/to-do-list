@@ -2,17 +2,17 @@ table {
     width: 100%;
 }
 
-tr.example-element-row:not(.example-expanded-row):hover {
+.example-element-row:not(.example-expanded-row):hover {
     background: whitesmoke;
 }
 
-tr.example-element-row:not(.example-expanded-row):active {
+.example-element-row:not(.example-expanded-row):active {
     background: #efefef;
 }
 
-.example-element-row td {
-    border-bottom-width: 0;
-}
+/*.example-element-row td {*/
+    /*border-bottom-width: 0;*/
+/*}*/
 
 .mat-sort-header-container {
     align-items: center;
