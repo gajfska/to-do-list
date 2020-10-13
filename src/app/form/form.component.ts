@@ -11,12 +11,13 @@ import {TaskService} from '../shared/task.service';
 })
 
 export class FormComponent {
-    @ViewChild('f', { static: false }) slForm: NgForm;
+    @ViewChild('f', {static: false}) slForm: NgForm;
 
 
     priority;
 
-    constructor(private taskService: TaskService) {}
+    constructor(private taskService: TaskService) {
+    }
 
     onSubmit(form: NgForm): void {
         const value = form.value;

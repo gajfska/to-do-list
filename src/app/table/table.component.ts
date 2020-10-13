@@ -3,9 +3,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {TaskModel} from '../shared/task.model';
 import {TaskService} from '../shared/task.service';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {MatSort} from '@angular/material/sort';
-import {DataSource} from '@angular/cdk/table';
 
 @Component({
     selector: 'app-table',
@@ -13,7 +12,7 @@ import {DataSource} from '@angular/cdk/table';
     styleUrls: ['./table.component.css']
 })
 
-export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
+export class TableComponent implements AfterViewInit, OnInit, OnDestroy {
 
 
     hoveredOnTaskUUID?: string;
@@ -22,7 +21,8 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
 
     private subscription: Subscription;
 
-    constructor(private taskService: TaskService) {}
+    constructor(private taskService: TaskService) {
+    }
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -44,8 +44,8 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
         this.dataSource.paginator = this.paginator;
     }
 
-    checkboxChange(task: TaskModel): void{
-        const isDone =  !task.done;
+    checkboxChange(task: TaskModel): void {
+        const isDone = !task.done;
         this.taskService.updateTask(task.id, isDone);
     }
 
@@ -76,7 +76,5 @@ export class TableComponent implements AfterViewInit, OnInit, OnDestroy{
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
-
-
 
 }

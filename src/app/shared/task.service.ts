@@ -1,7 +1,6 @@
 import {TaskModel} from './task.model';
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({providedIn: 'root'})
 export class TaskService {
@@ -12,7 +11,7 @@ export class TaskService {
 
     private tasksArray: TaskModel[] = [];
 
-    private exampleArray: TaskModel[] =  [
+    private exampleArray: TaskModel[] = [
         new TaskModel('Feed turtle', 3, false),
         new TaskModel('Vacuum', 3, false),
         new TaskModel('Wash the dishes', 2, false),
@@ -75,19 +74,7 @@ export class TaskService {
         this.tasksChangedSubject.next(this.tasksArray.slice());
         localStorage.setItem(this.localStorageName, JSON.stringify(this.tasksArray));
     }
-
-    sortingTask() {
-        // let currentArray = this.arrayOfTasks.slice();
-        // let sortedArray =  currentArray.sort((a, b) => {
-        //     if (a['taskName'] > b['taskName']){
-        //         return 1;
-        //     }
-        //     else {
-        //         return -1;
-        //     }
-        // });
-        // this.tasksChanged.next(sortedArray);
-
-    }
-
 }
+
+
+

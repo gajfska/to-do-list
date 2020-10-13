@@ -18,6 +18,6 @@
     color: #c76701 !important;
 }
 
-::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
     background-color: #c76701 !important;
 }
